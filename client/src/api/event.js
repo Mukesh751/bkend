@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const url = "https://backend-qi3u.onrender.com/posts/event";
-const url = "http://localhost:5000/posts/news";
+ const url = "https://backend-ace.onrender.com/posts/event";
+// const url = "http://localhost:5000/posts/news";
  const apifetchPosts = () => axios.get(url);
 
  const apicreatePost = (newPost) => axios.post(url, newPost);
