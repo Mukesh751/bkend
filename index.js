@@ -14,8 +14,11 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(bodyParser.json({extended: true }));
+app.use(bodyParser.urlencoded({extended: true }));
+
+
+app.use(express.json());
 
 app.use(cors());
 
@@ -26,8 +29,13 @@ const CONNECTION_URL = "mongodb+srv://ashuji478:Acenitrr@cluster0.fwuy52p.mongod
 
 const PORT = process.env.PORT|| 5000;
 
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
-  .catch((error) => console.log(`${error} did not connect`));
+await mongoose.connect(CONNECTION_URL,{ useNewUrlParser: true, useUnifiedTopology: true }).then(()=>{
+  console.log('DataBas connected.');
+}).catch((e) =>{
+  console.log('Connection Failed');
+});
 
-mongoose.set('useFindAndModify', false);
+
+app.listen(PORT,"0.0.0.0", ()=>{
+  console.log(`conncted at port ${PORT}`)
+  });
