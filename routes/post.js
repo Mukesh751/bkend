@@ -7,6 +7,8 @@ import {
   likePost,
 } from "../controllers/posts.js";
 
+import {achivementpost,achivementGet} from "../controllers/achivements.js";
+
 const router = express.Router();
 
 router.get("/news", getPosts);
@@ -24,4 +26,6 @@ router.post("/notice", createPost);
 router.patch("/notice/:id", updatePost);
 router.delete("/notice/:id", deletePost);
 router.patch("/notice/:id/likePost", likePost);
+router.post("/achivementPost",achivementpost );
+router.get("/achivementGet",achivementGet );
 export default router;
